@@ -8,6 +8,8 @@
 #### Notable Applications
 - Docker
 - Dropbox - Replaced critical components from Python to Go.
+- Twitter
+- An extensive [list](https://github.com/golang/go/wiki/GoUsers) - Over 300 companies just in the US
 
 #### Documentation
 - Dedicated documentation page.
