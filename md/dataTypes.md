@@ -75,7 +75,7 @@ Data Types and Syntax
 chan   int    // Integers can be sent or received
 chan<- int    // Integers can only be sent
 <-chan int    // Integers can only be received
-```
+```	
 
 
 #### References
