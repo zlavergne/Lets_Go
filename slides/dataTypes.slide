@@ -1,0 +1,110 @@
+Data types in Go
+
+
+* Integer Types
+
+*Signed*
+
+- *int*: Size is implementation-defined and is either 32 or 64 bits.
+- *int8*
+- *int16*
+- *int32*
+- *int64*
+
+*Unsigned*
+
+- *uint*: Same size as int
+- *uint8*
+- *uint16*
+- *uint32*
+- *uint64*
+- *uintptr*
+
+
+* Floating Types
+
+*Float*
+
+- *float32*
+- *float64*
+
+*Complex*
+
+- *complex64*: A float32 real and float32 imaginary
+- *complex128*: A float64 real and float64 imaginary
+
+* Strings and Characters
+
+*byte*
+
+- Alias for uint8
+
+*rune*
+
+- Alias for int32
+- Also represents a Unicode point
+
+*string*
+
+- Immutable
+- Arbitrary slice of bytes (Not necessarily UTF-8 or ASCII)
+- Contains a length and a pointer to bytes
+
+
+* Arrays and Slices
+
+*Arrays*
+
+- Fixed number of contiguous elements of a single type
+- Written as: `[20]int`
+
+*Slices*
+
+- Describe an underlying array
+- Do not require a specific number of elements
+- Written without an integer size: `[]int`
+
+
+* Functions
+
+Parameters are always passed by value, so use pointers if you need to modify values.
+
+- We can name return values and define multiple return values:
+.play ../src/returns.go /^func divide/,/^}/
+
+- Anonymous functions and closures are possible:
+.play ../src/closures.go /^var fn/,/^}/
+
+- Variadic functions are possible
+.play ../src/variadic.go /^func f/,/^}/
+
+
+* Structs
+
+- Member visibility follows 
+- Anonymous structs are allowed:
+.play ../src/anon-structs.go /^var a/,/^}/
+- Methods are defined outside of the struct:
+.play ../src/methods.go /func/,/^}/
+
+
+* Interfaces and Channels
+
+*Interfaces*
+
+- Specifies a set of methods that a struct must define
+- `interface{}` matches all types since all types implement 0 or more methods. Equivalent to `void*` in C.
+
+
+*Channels*
+
+- Mechanism for communication between functions executing concurrently
+- Defines a direction of information and the type of the messages being sent
+
+    chan   int  // Integers can be sent or received
+    chan<- int  // Integers can only be sent
+    <-chan int  // Integers can only be received
+
+* References
+[[https://golang.org/ref/spec][Official Spec]]
+[[https://blog.golang.org/strings][Golang Blog - Strings]]
