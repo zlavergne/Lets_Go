@@ -11,6 +11,8 @@ Data types in Go
 - *int32*
 - *int64*
 
+* Integer Types
+
 *Unsigned*
 
 - *uint*: Same size as int
