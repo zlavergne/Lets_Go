@@ -3,14 +3,20 @@ Paradigms & Principles of Go
 * Imperative
 
 - Go has loops, statements, selection statements, which control the operational order, so it fits into the Imperative paradigm.
+- Very similar to C and C++ both in syntax and behavior
+
+
 * Concurrent Logic
 
 - Go natively supports conncurency including multi-threading, multi-processing and asynchrony.
+
+
 * Object Oriented
 
-- Kind of. Go does allow types and methods and has OOP writing style it does not have any class hierarchy other than interfaces. 
+- Kind of. Go does allow types and methods and has OOP writing style, but it does not have any class hierarchy other than interfaces. 
 
 * Writeability
+
 Go was designed to be a "quiet" written language.
 
 Why stutter through
@@ -19,7 +25,7 @@ Why stutter through
 
 when you can use := declare-and-initialize construct.
 
-    myFoo := Foo()    
+    myFoo := Foo{}    
 
 - No forward declarations.
 - No header files.

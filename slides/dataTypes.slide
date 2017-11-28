@@ -83,29 +83,12 @@ Parameters are always passed by value, so use pointers if you need to modify val
 
 * Structs
 
-- Member visibility follows 
+- Member visibility is based on capitalization. Lower-case is restricted to the same package, and capitalized is public.
 - Anonymous structs are allowed:
 .play ../src/anon-structs.go /^var a/,/^}/
 - Methods are defined outside of the struct:
 .play ../src/methods.go /func/,/^}/
 
-
-* Interfaces and Channels
-
-*Interfaces*
-
-- Specifies a set of methods that a struct must define
-- `interface{}` matches all types since all types implement 0 or more methods. Equivalent to `void*` in C.
-
-
-*Channels*
-
-- Mechanism for communication between functions executing concurrently
-- Defines a direction of information and the type of the messages being sent
-
-    chan   int  // Integers can be sent or received
-    chan<- int  // Integers can only be sent
-    <-chan int  // Integers can only be received
 
 * References
 [[https://golang.org/ref/spec][Official Spec]]

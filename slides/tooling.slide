@@ -28,6 +28,7 @@ There is no official editor or IDE for Go. A list of common editors and the tool
 - Visual Studio
 
 *Possible*text*editors:*
+
 - Vim can use [[https://github.com/fatih/vim-go][vim-go]] for autocompletion and refactoring
 - Atom can use [[https://github.com/joefitzgerald/go-plus][go-plus]]
 - Visual Studio Code has [[https://github.com/Microsoft/vscode-go][vscode-go]] available
@@ -42,3 +43,4 @@ There is no official editor or IDE for Go. A list of common editors and the tool
 *delve*
 
 - Compatible with most gdb commands
+- Much better support within the Go community
