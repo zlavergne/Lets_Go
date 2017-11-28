@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Error Handling</title>
+    <meta charset='utf-8'>
+    <script src='static/slides.js'></script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+      
+      <article>
+        <h1>Error Handling</h1>
+        
+        
+        
+      </article>
+      
+  
+  
+      <article>
+      
+        <h3>Living Without Exceptions</h3>
+        
+  
+  <p>
+    Go does not have exceptions. Uses the error interface.
+  </p>
+  
+
+  
+  <div class="code"><pre>type error interface {
+    Error() string
+}</pre></div>
+  
+
+  
+  <p>
+    Any type that impliments a function that returns a string can be thought of, or used, as an error.
+<br>
+
+    Because error is an interface, creating custom error types is easy, with as much or as little detail as needed. 
+<br>
+
+    Because functions can return multiple values, at least one of the returned values are for errors.
+<br>
+
+    Must do something with the error returned, using a variable or an underscore to intentionally ignore the error.
+  </p>
+  
+
+      
+      <div class="pagenumber">[1]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Living Without Exceptions</h3>
+        
+  
+  <div class="code"><pre>val, err = sqrt(-2)</pre></div>
+  
+
+  
+  <p>
+    The above would return a default value to val, and an error type to err.
+<br>
+
+    Without an error, err will be equal to nil. So we would check for errors by comparing the returned err to nil.
+  </p>
+  
+
+  
+  <div class="code"><pre>val, err := sqrt(-2) 
+if err != nil {
+   // do error handling
+}</pre></div>
+  
+
+  
+  <p>
+    Can create custom error messages calling errors New method. 
+  </p>
+  
+
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="7">func sqrtWithErrorReturn(input float64) (float64, error) {</span>
+<span num="8">    if input &lt; 0{</span>
+<span num="9">        return 0, errors.New(&#34;Input value is below zero.&#34;)</span>
+<span num="10">    }</span>
+<span num="11">    // ... Rest of the sqrt function</span>
+<span num="12"></span>
+<span num="13">    return 0, nil</span>
+<span num="14">}</span>
+</pre>
+
+
+</div>
+
+      
+      <div class="pagenumber">[2]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Living Without Exceptions</h3>
+        
+  
+  <p>
+    Some users may be frustrated by constantly error checking with Go, but that just means you must in some way handle the errors which requires thought and leads to solid, stable code.
+  </p>
+  
+
+      
+      <div class="pagenumber">[3]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Handle It... Later</h3>
+        
+  
+  <p>
+    The defer statement pushes a function call onto a deferred stack. The list of saved calls is then executed at the end of the surrounding function.
+  </p>
+  
+
+  
+  <p>
+    Commonly this is used to simplify function clean up.
+  </p>
+  
+
+  
+  <p>
+    Deffered functions can read and assign to the functions return values.
+  </p>
+  
+
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="5">func deferingAction(){</span>
+<span num="6">    fmt.Println(&#34;Hello World&#34;)</span>
+<span num="7">    defer fmt.Println(&#34;First Deferred Print Line&#34;)</span>
+<span num="8">    fmt.Println(&#34;This will print before the first defer&#34;)</span>
+<span num="9">    defer fmt.Println(&#34;Second Deffered Print Line&#34;)</span>
+<span num="10">    fmt.Println(&#34;Finally, we&#39;ll leave the function.&#34;)</span>
+<span num="11">}</span>
+</pre>
+
+
+</div>
+
+      
+      <div class="pagenumber">[4]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Panic! </h3>
+        
+  
+  <p>
+    Built in function stops the flow of the program and ... Panics.
+  </p>
+  
+
+  
+  <p>
+    If a function calls panic, the function stops, any deferred calls run, and the process goes up the call stack until all routines have returned and the program crashes.
+  </p>
+  
+
+      
+      <div class="pagenumber">[5]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Aaand Recover.</h3>
+        
+  
+  <p>
+    Recovers from a panicking function.
+  </p>
+  
+
+  
+  <p>
+    Is only useful in deferred functions. 
+  </p>
+  
+
+  
+  <p>
+    Returns nil in non-panicking situations. 
+  </p>
+  
+
+      
+      <div class="pagenumber">[6]</div>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h1>
+        
+      </article>
+
+  </body>
+  
+</html>

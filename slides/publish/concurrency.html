@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concurrency</title>
+    <meta charset='utf-8'>
+    <script src='static/slides.js'></script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+      
+      <article>
+        <h1>Concurrency</h1>
+        
+        
+        
+      </article>
+      
+  
+  
+      <article>
+      
+        <h3>Goroutines</h3>
+        
+  
+  <p>
+    Easily launch functions in a <i>goroutine</i>, similar to a light-weight thread.
+  </p>
+  
+
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="7">func main() {</span>
+<span num="8">    var wg sync.WaitGroup</span>
+<span num="9">    for i := 0; i &lt;= 3; i&#43;&#43; {</span>
+<span num="10">        wg.Add(1)</span>
+<span num="11">        go func(seconds int) {</span>
+<span num="12">            time.Sleep(time.Duration(seconds) * time.Second)</span>
+<span num="13">            fmt.Println(&#34;Slept for:&#34;, seconds, &#34;seconds&#34;)</span>
+<span num="14">            wg.Done()</span>
+<span num="15">        }(i)</span>
+<span num="16">    }</span>
+<span num="17">    fmt.Println(&#34;Finished in main.&#34;)</span>
+<span num="18">    wg.Wait()</span>
+<span num="19">}</span>
+</pre>
+
+
+</div>
+
+  
+  <p>
+    Goroutines do not correspond 1:1 with threads on a machine. Each thread can have thousands of goroutines.
+  </p>
+  
+
+  
+  <p>
+    Execution is scheduled, and thread switching isn&#39;t necessary on an OS level.
+  </p>
+  
+
+      
+      <div class="pagenumber">[1]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Channels</h3>
+        
+  
+  <p>
+    Remember that channels declare the direction of the flow of values.
+  </p>
+  
+
+  
+  <div class="code"><pre>a chan   int  // We can both read and write values to a
+b chan&lt;- int  // We can only write to b
+c &lt;-chan int  // We can only read from c</pre></div>
+  
+
+  
+  <p>
+    Channels make it easy to communicate between goroutines.
+  </p>
+  
+
+  
+  <p>
+    Since all parameters are passed by value, a goroutine will always reference the same channel.
+  </p>
+  
+
+      
+      <div class="pagenumber">[2]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Finding the first N prime numbers</h3>
+        
+  
+  <p>
+    We will build a prime sieve to generate the first N prime numbers:
+  </p>
+  
+
+  
+  <p>
+    Begin by filling a channel with all integers &gt;=2:
+  </p>
+  
+
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="11">func fill(out chan&lt;- int) {</span>
+<span num="12">    for i := 2; ; i&#43;&#43; {</span>
+<span num="13">        out &lt;- i</span>
+<span num="14">    }</span>
+<span num="15">}</span>
+</pre>
+
+
+</div>
+
+  
+  <p>
+    Filter out any numbers that we know are not prime and forward the rest to another channel:
+  </p>
+  
+
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="20">func filter(in &lt;-chan int, out chan&lt;- int, prime int) {</span>
+<span num="21">    for {</span>
+<span num="22">        i := &lt;-in      // Copy value from &#39;in&#39;.</span>
+<span num="23">        if i % prime != 0 {</span>
+<span num="24">            out &lt;- i   // Forward &#39;i&#39; to &#39;out&#39;.</span>
+<span num="25">        }</span>
+<span num="26">    }</span>
+<span num="27">}</span>
+</pre>
+
+
+</div>
+
+      
+      <div class="pagenumber">[3]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Putting it together</h3>
+        
+  <div class="code" contenteditable="true" spellcheck="false">
+
+
+<pre><span num="29">func main() {</span>
+<span num="30">    n := 100                   // The first `n` primes that we want to calculate</span>
+<span num="31">    ch := make(chan int)       // Create a new channel (bidirectional).</span>
+<span num="32">    go fill(ch)                // Launch a goroutine that fills ch.</span>
+<span num="33">    for i := 0; i &lt; n; i&#43;&#43; {</span>
+<span num="34">        prime := &lt;-ch          // Copy the first value from ch and treat it as our new prime</span>
+<span num="35">        print(prime, &#34;\n&#34;)</span>
+<span num="36">        ch1 := make(chan int)</span>
+<span num="37">        go filter(ch, ch1, prime)</span>
+<span num="38">        ch = ch1</span>
+<span num="39">    }</span>
+<span num="40">}</span>
+</pre>
+
+
+</div>
+
+      
+      <div class="pagenumber">[4]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Visualising Concurrency</h3>
+        
+  
+  <p>
+    It is often difficult to visualize what is going on in concurrent applications.
+<br>
+
+    Go lets you inject code before compilation and add extra function calls for output, and this can be helpful for generating visualisations for code.
+  </p>
+  
+
+  
+  <p>
+    <a href="https://divan.github.io/posts/go_concurrency_visualize/" target="_blank">divan.github.io</a> - Trace function calls and output to a csv file. Render that in WebGL
+<br>
+
+    <a href="http://divan.github.io/demos/primesieve/" target="_blank">Prime Sieve</a>
+  </p>
+  
+
+      
+      <div class="pagenumber">[5]</div>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h1>
+        
+      </article>
+
+  </body>
+  
+</html>

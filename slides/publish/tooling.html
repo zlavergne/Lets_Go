@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Language Tools</title>
+    <meta charset='utf-8'>
+    <script src='static/slides.js'></script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+      
+      <article>
+        <h1>Language Tools</h1>
+        
+        
+        
+      </article>
+      
+  
+  
+      <article>
+      
+        <h3>Popular Go Compilers</h3>
+        
+  
+  <p>
+    There are two primary compilers available, and both are written by the official Go developers:
+  </p>
+  
+
+  <ul>
+  
+    <li><b>gc</b>: The original and default compiler toolchain</li>
+  
+    <li><b>gccgo</b>: A Go frontend for gcc</li>
+  
+  </ul>
+
+      
+      <div class="pagenumber">[1]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Examples</h3>
+        
+  
+  <p>
+    Compiler and associated tools are generally invoked by calling `go &lt;command&gt;`
+  </p>
+  
+
+  <ul>
+  
+    <li><b>go run</b> and <b>go build</b></li>
+  
+    <li><b>go test</b></li>
+  
+    <li>Can output test coverage with <b>-coverprofile</b></li>
+  
+    <li>Can test for race conditions with <b>-race</b></li>
+  
+    <li><b>go get</b>: Package management</li>
+  
+  </ul>
+
+      
+      <div class="pagenumber">[2]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Editor Tools</h3>
+        
+  
+  <p>
+    There is no official editor or IDE for Go. A list of common editors and the tools associated with them can be found on <a href="https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins" target="_blank">Github</a>.
+  </p>
+  
+
+  
+  <p>
+    <b>Possible IDE&#39;s:</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Eclipse using <a href="https://goclipse.github.io/" target="_blank">GoClipse</a></li>
+  
+    <li><a href="https://www.jetbrains.com/go/" target="_blank">GoLand</a>, Jetbrains&#39; Go IDE</li>
+  
+    <li>Visual Studio</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>Possible text editors:</b>
+<br>
+
+    - Vim can use <a href="https://github.com/fatih/vim-go" target="_blank">vim-go</a> for autocompletion and refactoring
+<br>
+
+    - Atom can use <a href="https://github.com/joefitzgerald/go-plus" target="_blank">go-plus</a>
+<br>
+
+    - Visual Studio Code has <a href="https://github.com/Microsoft/vscode-go" target="_blank">vscode-go</a> available
+  </p>
+  
+
+      
+      <div class="pagenumber">[3]</div>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Debugging </h3>
+        
+  
+  <p>
+    <b>gdb</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Some manual configuration is necessary if using <b>gc</b> and is generally not recommended</li>
+  
+    <li><b>gccgo</b> has native support.</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>delve</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Compatible with most gdb commands</li>
+  
+  </ul>
+
+      
+      <div class="pagenumber">[4]</div>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h1>
+        
+      </article>
+
+  </body>
+  
+</html>
