@@ -18,7 +18,7 @@ Without an error, err will be equal to nil. So we would check for errors by comp
        // do error handling
     }
 Can create custom error messages calling errors New method. 
-.code ../src/handling.go /^func sqrtWithErrorReturn/,/^}/
+.play ../src/handling.go /^func sqrtWithErrorReturn/,/^}/
 
 * Living Without Exceptions
 
@@ -34,7 +34,7 @@ Deffered functions can read and assign to the functions return values.
 * Panic! 
 Built in function stops the flow of the program and ... Panics.
 
-If a function calls F, F stops, any deferred calls run, and the process goes up the call stack until all routines have returned and the program crashes.
+If a function calls panic, the function stops, any deferred calls run, and the process goes up the call stack until all routines have returned and the program crashes.
 
 * Aaand Recover.
 Recovers from a panicking function.
