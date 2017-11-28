@@ -15,12 +15,20 @@ Go was designed to be a "quiet" written language.
 
 Why stutter through
 
-    foo.Foo* myFoo = new foo.Foo
-when you can use `:=` declare-and-initialize construct.
+    foo.Foo* myFoo = new foo.Foo()
+
+when you can use := declare-and-initialize construct.
+
+    myFoo := Foo()    
 
 - No forward declarations.
 - No header files.
 
 * Orthogonality
+
 - Methods can be implemented for any type.
+
 - Structures represent data, interfaces represent abstraction.
+
+- The interface interface{} is equivalent to void* in C or C++.
+

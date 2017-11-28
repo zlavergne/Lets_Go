@@ -2,15 +2,20 @@ Error Handling
 
 * Living Without Exceptions
 Go does not have exceptions. Uses the error interface.
+
+    type error interface {
+        Error() string
+    }
+
+Any type that impliments a function that returns a string can be thought of, or used, as an error.
 Because error is an interface, creating custom error types is easy, with as much or as little detail as needed. 
-  - Because functions can return multiple values, at least one of the returned values are for errors.
-  - Must do something with the error returned, using a variable or an underscore to intentionally ignore the error.
+Because functions can return multiple values, at least one of the returned values are for errors.
+Must do something with the error returned, using a variable or an underscore to intentionally ignore the error.
 
 * Living Without Exceptions
-For example:
 
     val, err = sqrt(-2)
-would return a default value to val, and an error to err.
+The above would return a default value to val, and an error type to err.
 Without an error, err will be equal to nil. So we would check for errors by comparing the returned err to nil.
     
     val, err := sqrt(-2) 
@@ -30,6 +35,8 @@ The defer statement pushes a function call onto a deferred stack. The list of sa
 Commonly this is used to simplify function clean up.
 
 Deffered functions can read and assign to the functions return values.
+
+.play ../src/defer.go /^func deferingAction/,/^}/
 
 * Panic! 
 Built in function stops the flow of the program and ... Panics.
