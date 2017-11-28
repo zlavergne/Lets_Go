@@ -3,7 +3,7 @@ Where, When, and Why?
 * Created in 2009 - Released in 2012
 
     "Some programmers find it fun to work in; others find it unimaginative, even boring.
-    ... Go was designed ... which led to a language that is not a breakthrough research
+    Go was designed ... which led to a language that is not a breakthrough research
     language but is nonetheless an excellent tool for engineering large software projects."
 
 Robert Grisemer, Rob Pike, and Ken Thompson at Google.
@@ -24,11 +24,13 @@ Resulted in a very simple C-style syntax
 
 - Twitter
 
-- An extensive [[(https://github.com/golang/go/wiki/GoUsers)][list]] - Over 300 companies just in the US
+- An extensive [[https://github.com/golang/go/wiki/GoUsers][list]] - Over 300 companies just in the US
 
 * Reason for current use
-Back-end web development
+Primarily used in back-end web development
+
 Static typing results in fewer bugs during runtime
+
 Generally more efficient than other languages used for the same purpose:
 
 - Python
@@ -45,8 +47,8 @@ Very familiar for developers who have used C, but has much fewer warts
 Much simpler than C++ or Java
 
 * Documentation
-Dedicated documentation page.
+Dedicated documentation page. Example for the [[https://godoc.org/github.com/pkg/errors][error package]].
 
 - Links to package/commands/syntax documentations.
 
-- Links to articles and tutorials.
+- Links to articles and tutorials. The [[https://blog.golang.org/][official Go blog]] is quite good.

@@ -8,8 +8,11 @@ Go does not have exceptions. Uses the error interface.
     }
 
 Any type that impliments a function that returns a string can be thought of, or used, as an error.
+
 Because error is an interface, creating custom error types is easy, with as much or as little detail as needed. 
+
 Because functions can return multiple values, at least one of the returned values are for errors.
+
 Must do something with the error returned, using a variable or an underscore to intentionally ignore the error.
 
 * Living Without Exceptions

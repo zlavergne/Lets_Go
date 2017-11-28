@@ -12,13 +12,13 @@ Execution is scheduled, and thread switching isn't necessary on an OS level.
 
 * Channels
 
-Remember that channels declare the direction of the flow of values.
+Channels are a convenient way to communicate between concurrently executing functions.
+
+Channels define the direction of flow of values.
 
     a chan   int  // We can both read and write values to a
     b chan<- int  // We can only write to b
     c <-chan int  // We can only read from c
-
-Channels make it easy to communicate between goroutines.
 
 Since all parameters are passed by value, a goroutine will always reference the same channel.
 
@@ -41,6 +41,7 @@ Filter out any numbers that we know are not prime and forward the rest to anothe
 * Visualising Concurrency
 
 It is often difficult to visualize what is going on in concurrent applications.
+
 Go lets you inject code before compilation and add extra function calls for output, and this can be helpful for generating visualisations for code.
 
 [[https://divan.github.io/posts/go_concurrency_visualize/][divan.github.io]] - Trace function calls and output to a csv file. Render that in WebGL
