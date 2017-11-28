@@ -1,4 +1,4 @@
-Paradigms
+Paradigms & Principles of Go
 
 * Imperative
 
@@ -9,3 +9,18 @@ Paradigms
 * Object Oriented
 
 - Kind of. Go does allow types and methods and has OOP writing style it does not have any class hierarchy other than interfaces. 
+
+* Writeability
+Go was designed to be a "quiet" written language.
+
+Why stutter through
+
+    foo.Foo* myFoo = new foo.Foo
+when you can use `:=` declare-and-initialize construct.
+
+- No forward declarations.
+- No header files.
+
+* Orthogonality
+- Methods can be implemented for any type.
+- Structures represent data, interfaces represent abstraction.
